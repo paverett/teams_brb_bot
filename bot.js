@@ -1,13 +1,16 @@
-const { ActivityTypes, MessageFactory, CardFactory } = require('botbuilder');
-//const builderTeams = require('botbuilder-teams');
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
-/**
- * A bot that responds to input from suggested actions.
- */
+// bot.js is your bot's main entry point to handle incoming activities.
+
+const { ActivityTypes, MessageFactory, CardFactory } = require('botbuilder');
+
+// Turn counter property
+const TURN_COUNTER_PROPERTY = 'turnCounterProperty';
 
 const brbCard = require('./brbCard.json')
 
-class BrbBot {
+class EchoBot {
     /**
      *
      * @param {ConversationState} conversation state object
@@ -25,24 +28,24 @@ class BrbBot {
      * @param {TurnContext} on turn context object.
      */
     async onTurn(turnContext) {
+        // Handle message activity type. User's responses via text or speech or card interactions flow back to the bot as Message activity.
+        // Message activities may contain text, speech, interactive cards, and binary or unknown attachments.
+        // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
         if (turnContext.activity.text == "back") {
-            count = count === undefined ? 1 : ++count;
             await turnContext.sendActivity("Welcome Back!")
         }
 
         else if (turnContext.activity.type === ActivityTypes.Message) {
-            let count = await this.countProperty.get(turnContext);
-            count = count === undefined ? 1 : ++count;
             await turnContext.sendActivity({
                 attachments: [CardFactory.adaptiveCard(brbCard)]
             });
         }
-
         else {
                 await turnContext.sendActivity(`[${ turnContext.activity.type } event detected.]`);
         }
+        // Save state changes
         await this.conversationState.saveChanges(turnContext);
     }
 }
 
-module.exports.BrbBot = BrbBot;
+exports.EchoBot = EchoBot;
