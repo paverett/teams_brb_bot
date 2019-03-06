@@ -1,14 +1,13 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+const { ActivityTypes, MessageFactory, CardFactory } = require('botbuilder');
+//const builderTeams = require('botbuilder-teams');
 
-// bot.js is your bot's main entry point to handle incoming activities.
+/**
+ * A bot that responds to input from suggested actions.
+ */
 
-const { ActivityTypes } = require('botbuilder');
+const brbCard = require('./brbCard.json')
 
-// Turn counter property
-const TURN_COUNTER_PROPERTY = 'turnCounterProperty';
-
-class EchoBot {
+class BrbBot {
     /**
      *
      * @param {ConversationState} conversation state object
@@ -26,23 +25,24 @@ class EchoBot {
      * @param {TurnContext} on turn context object.
      */
     async onTurn(turnContext) {
-        // Handle message activity type. User's responses via text or speech or card interactions flow back to the bot as Message activity.
-        // Message activities may contain text, speech, interactive cards, and binary or unknown attachments.
-        // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
-        if (turnContext.activity.type === ActivityTypes.Message) {
-            // read from state.
+        if (turnContext.activity.text == "back") {
+            count = count === undefined ? 1 : ++count;
+            await turnContext.sendActivity("Welcome Back!")
+        }
+
+        else if (turnContext.activity.type === ActivityTypes.Message) {
             let count = await this.countProperty.get(turnContext);
             count = count === undefined ? 1 : ++count;
-            await turnContext.sendActivity(`${ count }: You said "${ turnContext.activity.text }"`);
-            // increment and set turn counter.
-            await this.countProperty.set(turnContext, count);
-        } else {
-            // Generic handler for all other activity types.
-            await turnContext.sendActivity(`[${ turnContext.activity.type } event detected]`);
+            await turnContext.sendActivity({
+                attachments: [CardFactory.adaptiveCard(brbCard)]
+            });
         }
-        // Save state changes
+
+        else {
+                await turnContext.sendActivity(`[${ turnContext.activity.type } event detected.]`);
+        }
         await this.conversationState.saveChanges(turnContext);
     }
 }
 
-exports.EchoBot = EchoBot;
+module.exports.BrbBot = BrbBot;
