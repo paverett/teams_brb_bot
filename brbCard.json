@@ -1,0 +1,30 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "id": "back",
+                    "text": "Be Back Soon!",
+                    "isSubtle": true
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Back",
+            "data": {
+                "msteams" : {
+                    "type": "messageBack",
+                    "text": "back"
+                }
+            }
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
