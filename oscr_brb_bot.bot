@@ -1,0 +1,41 @@
+{
+  "name": "oscr_brb_bot",
+  "padlock": "/TcOw5C8KEpfsy8kkB00fQ==!BhDDc297CWmlCk63+ZiqPg9MAXPYK9iiuyYeKng4omOz+dDGgreFzxBo/VnhHIbH",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "5ee35505-eb8e-4929-937d-645df5013288",
+      "subscriptionId": "ec1389db-5574-4825-bf32-d270df7d9ea6",
+      "resourceGroup": "Bots",
+      "serviceName": "oscr_brb_bot",
+      "type": "abs",
+      "name": "oscr_brb_bot",
+      "id": "1"
+    },
+    {
+      "connectionString": "vP85zAIL3H0Y5d/0hVE3uw==!q3jm0kKLozxwMLTiXxOgPI4nvphCX1nooNQuTJ1D8ip91qC3UXS3NPJ0MR1ye6mwUI4rfA6jkhKBXTKNM0v/myAkGteKTrZQ5uUTiCSNE3vabTl4JpIx986jozFDLPU9qEDxn7SHeFjZMywATc6Assv3J6kbh0GYoOyNYjsoFlWedu0EmOROCgb4vXnpxJBKo+M3Yni00r8xu/vVQXfO8g==",
+      "tenantId": "5ee35505-eb8e-4929-937d-645df5013288",
+      "subscriptionId": "ec1389db-5574-4825-bf32-d270df7d9ea6",
+      "resourceGroup": "Bots",
+      "serviceName": "oscrbrbbot8c5d",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "028e1196-2cf8-4464-9323-7db91f620d25",
+      "appPassword": "uwqgmP2GUZs4lBCLZ8S2XA==!0E0K2W3ZnWAEJ3lADvWUbDYg5Y91YqT7u3qJ4SwqySU=",
+      "endpoint": "https://oscrbrbbot.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    }
+  ]
+}
